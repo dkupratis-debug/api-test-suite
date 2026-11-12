@@ -1,0 +1,50 @@
+# Package metadata and tool settings for api-test-suite.
+# Install the client plus the test tools with:
+#   python -m pip install -e ".[dev]"
+
+[project]
+name = "api-test-suite"
+version = "0.1.0"
+description = "Pytest contract checks for the JSONPlaceholder practice API."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "David Kupratis" }]
+dependencies = ["requests>=2.31"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "responses>=0.25",
+    "jsonschema>=4.21",
+    "ruff>=0.6",
+]
+
+[project.urls]
+Repository = "https://github.com/dkupratis-debug/api-test-suite"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["apitests*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra --strict-markers"
+markers = [
+    "live: call the real JSONPlaceholder API; skipped unless --live or API_TEST_LIVE=1",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["apitests"]
