@@ -1,0 +1,22 @@
+# Local environments and Python build output.
+# The JSON files under tests/fixtures/ are recorded samples and should be committed.
+
+.venv/
+venv/
+.env
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+.idea/
+.vscode/
